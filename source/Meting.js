@@ -1,3 +1,5 @@
+import util from './util.js'
+
 class MetingJSElement extends HTMLElement {
 
   connectedCallback() {
@@ -71,7 +73,7 @@ class MetingJSElement extends HTMLElement {
     }
   }
 
-  _parse() {
+  async _parse() {
     if (this.meta.url) {
       let result = {
         name: this.meta.name || this.meta.title || 'Audio name',
@@ -99,9 +101,15 @@ class MetingJSElement extends HTMLElement {
       .replace(':auth', this.meta.auth)
       .replace(':r', Math.random())
 
-    fetch(url)
-      .then(res => res.json())
-      .then(result => this._loadPlayer(result))
+    let res = await fetch(url)
+    res = await res.json()
+
+    if (res[0].url.startsWith('@')) {
+      const [handle] = res[0].url.split('@').slice(1)
+      res = await util[handle](res)
+    }
+
+    this._loadPlayer(res)
   }
 
   _loadPlayer(data) {

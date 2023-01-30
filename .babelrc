@@ -1,18 +1,16 @@
 {
-	"presets": [
+  "presets": [
     [
       "@babel/preset-env",
       {
-				"targets": {
-	        "edge": "14",
-	        "firefox": "60",
-	        "chrome": "49",
-	        "safari": "10.3"
-	      },
+        "targets": {
+          "edge": "14",
+          "firefox": "60",
+          "chrome": "49",
+          "safari": "10.3"
+        },
         "useBuiltIns": "entry"
       }
-    ],
-		"minify"
-  ],
-  "plugins": []
+    ]
+  ]
 }

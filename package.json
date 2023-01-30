@@ -16,13 +16,14 @@
  "main": "dist",
  "scripts": {
   "lint": "eslint source",
-  "build": "del dist && mkdir dist && babel source/Meting.js -o dist/Meting.min.js",
+  "build": "rollup -c",
   "test": "npm run build",
   "prepublishOnly": "npm run build"
  },
  "files": [
   "dist"
  ],
+ "type": "module",
  "keywords": [
   "player",
   "music",
@@ -31,11 +32,15 @@
   "html5"
  ],
  "devDependencies": {
-  "@babel/cli": "^7.2.3",
-  "@babel/core": "^7.3.3",
-  "@babel/preset-env": "^7.3.1",
-  "babel-preset-minify": "^0.5.0",
-  "del-cli": "^1.1.0",
-  "eslint": "^5.14.0"
+  "@babel/core": "^7.20.12",
+  "@babel/preset-env": "^7.20.2",
+  "@rollup/plugin-babel": "^6.0.3",
+  "@rollup/plugin-commonjs": "^24.0.1",
+  "@rollup/plugin-node-resolve": "^15.0.1",
+  "@rollup/plugin-terser": "^0.4.0",
+  "eslint": "^8.33.0"
+ },
+ "dependencies": {
+  "fetch-jsonp": "^1.2.3"
  }
 }
