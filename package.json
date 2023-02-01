@@ -1,11 +1,11 @@
 {
- "name": "meting",
- "version": "2.0.1",
+ "name": "@xizeyoupan/meting",
+ "version": "2.0.2",
  "description": "Wow, such a beautiful html5 music player (with Meting API)",
  "license": "MIT",
- "homepage": "https://github.com/metowolf/MetingJS",
+ "homepage": "https://github.com/xizeyoupan/MetingJS",
  "repository": {
-  "url": "git+https://github.com/metowolf/MetingJS.git",
+  "url": "git+https://github.com/xizeyoupan/MetingJS.git",
   "type": "git"
  },
  "author": {

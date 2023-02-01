@@ -9,6 +9,14 @@
 <img alt="License" src="https://img.shields.io/npm/l/meting.svg?style=flat-square"/>
 </p>
 
+## Feature
+
+**Add support for tencent with jsonp.**
+
+More info:
+
+https://github.com/xizeyoupan/MetingJS
+
 ## Requirement
 
 https://github.com/MoePlayer/APlayer
