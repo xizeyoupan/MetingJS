@@ -39,7 +39,7 @@ class MetingJSElement extends HTMLElement {
     }
     this.config = config
 
-    this.api = this.meta.api || window.meting_api || 'https://api.i-meto.com/meting/api?server=:server&type=:type&id=:id&r=:r'
+    this.api = this.meta.api || window.meting_api || 'https://m.boochinoob.shop/api?server=:server&type=:type&id=:id&r=:r'
     if (this.meta.auto) this._parse_link()
   }
 
@@ -142,7 +142,7 @@ class MetingJSElement extends HTMLElement {
 
 }
 
-console.log('\n %c MetingJS v2.0.1 %c https://github.com/xizeyoupan/MetingJS \n', 'color: #fadfa3; background: #030307; padding:5px 0;', 'background: #fadfa3; padding:5px 0;')
+console.log('\n %c MetingJS v2.0.4 %c https://github.com/xizeyoupan/MetingJS \n', 'color: #fadfa3; background: #030307; padding:5px 0;', 'background: #fadfa3; padding:5px 0;')
 
 if (window.customElements && !window.customElements.get('meting-js')) {
   window.MetingJSElement = MetingJSElement
