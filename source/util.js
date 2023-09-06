@@ -51,16 +51,16 @@ const get_song_url = async (id, cookie = '') => {
   }
 
   const file = id.map(e => `${typeObj.s}${e}${e}${typeObj.e}`)
-  const guid = (Math.random() * 10000000).toFixed(0);
+  const guid = (Math.random() * 10000000).toFixed(0)
 
-  let purl = '';
+  let purl = ''
 
   let data = {
     req_0: {
       module: 'vkey.GetVkeyServer',
       method: 'CgiGetVkey',
       param: {
-        filename: file,
+        // filename: file,
         guid: guid,
         songmid: id,
         songtype: [0],
@@ -94,58 +94,58 @@ const get_song_url = async (id, cookie = '') => {
 
   const url = changeUrlQuery(params, 'https://u.y.qq.com/cgi-bin/musicu.fcg')
 
-  let result = await fetchJsonp(url);
+  let result = await fetchJsonp(url)
 
   result = await result.json()
 
   if (result.req_0 && result.req_0.data && result.req_0.data.midurlinfo) {
-    purl = result.req_0.data.midurlinfo[0].purl;
+    purl = result.req_0.data.midurlinfo[0].purl
   }
 
   const domain =
     result.req_0.data.sip.find(i => !i.startsWith('http://ws')) ||
-    result.req_0.data.sip[0];
+    result.req_0.data.sip[0]
 
   const res = `${domain}${purl}`.replace('http://', 'https://')
   // console.log(res);
-  return res;
+  return res
 
 }
 
 
 function changeUrlQuery(obj, baseUrl) {
-  const query = getQueryFromUrl(null, baseUrl);
-  let url = baseUrl.split('?')[0];
+  const query = getQueryFromUrl(null, baseUrl)
+  let url = baseUrl.split('?')[0]
 
-  const newQuery = { ...query, ...obj };
-  let queryArr = [];
+  const newQuery = { ...query, ...obj }
+  let queryArr = []
   Object.keys(newQuery).forEach((key) => {
     if (newQuery[key] !== undefined && newQuery[key] !== '') {
-      queryArr.push(`${key}=${encodeURIComponent(newQuery[key])}`);
+      queryArr.push(`${key}=${encodeURIComponent(newQuery[key])}`)
     }
-  });
-  return `${url}?${queryArr.join('&')}`.replace(/\?$/, '');
+  })
+  return `${url}?${queryArr.join('&')}`.replace(/\?$/, '')
 }
 
 function getQueryFromUrl(key, search) {
   try {
-    const sArr = search.split('?');
-    let s = '';
+    const sArr = search.split('?')
+    let s = ''
     if (sArr.length > 1) {
-      s = sArr[1];
+      s = sArr[1]
     } else {
-      return key ? undefined : {};
+      return key ? undefined : {}
     }
-    const querys = s.split('&');
-    const result = {};
+    const querys = s.split('&')
+    const result = {}
     querys.forEach((item) => {
-      const temp = item.split('=');
-      result[temp[0]] = decodeURIComponent(temp[1]);
-    });
-    return key ? result[key] : result;
+      const temp = item.split('=')
+      result[temp[0]] = decodeURIComponent(temp[1])
+    })
+    return key ? result[key] : result
   } catch (err) {
     // 除去search为空等异常
-    return key ? '' : {};
+    return key ? '' : {}
   }
 }
 

@@ -1,6 +1,6 @@
 {
  "name": "@xizeyoupan/meting",
- "version": "2.0.5",
+ "version": "2.0.6",
  "description": "Wow, such a beautiful html5 music player (with Meting API)",
  "license": "MIT",
  "homepage": "https://github.com/xizeyoupan/MetingJS",
@@ -15,7 +15,7 @@
  },
  "main": "dist",
  "scripts": {
-  "lint": "eslint source",
+  "lint": "eslint source --fix",
   "build": "rollup -c",
   "test": "npm run build",
   "prepublishOnly": "npm run build"
