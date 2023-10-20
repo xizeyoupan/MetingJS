@@ -5,7 +5,11 @@ class MetingJSElement extends HTMLElement {
   connectedCallback() {
     if (window.APlayer && window.fetch) {
       this._init()
-      this._parse()
+      this._parse().catch(error => {
+        console.error(error)
+        const customEvent = new CustomEvent('parse-error', { detail: { error } })
+        this.dispatchEvent(customEvent)
+      })
     }
   }
 
@@ -50,11 +54,11 @@ class MetingJSElement extends HTMLElement {
       ['music.163.com.*artist.*id=(\\d+)', 'netease', 'artist'],
       ['music.163.com.*playlist.*id=(\\d+)', 'netease', 'playlist'],
       ['music.163.com.*discover/toplist.*id=(\\d+)', 'netease', 'playlist'],
-      ['y.qq.com.*song/(\\w+).html', 'tencent', 'song'],
-      ['y.qq.com.*album/(\\w+).html', 'tencent', 'album'],
-      ['y.qq.com.*singer/(\\w+).html', 'tencent', 'artist'],
-      ['y.qq.com.*playsquare/(\\w+).html', 'tencent', 'playlist'],
-      ['y.qq.com.*playlist/(\\w+).html', 'tencent', 'playlist'],
+      ['y.qq.com.*song/(\\w+)(\\.html)?', 'tencent', 'song'],
+      ['y.qq.com.*album/(\\w+)(\\.html)?', 'tencent', 'album'],
+      ['y.qq.com.*singer/(\\w+)(\\.html)?', 'tencent', 'artist'],
+      ['y.qq.com.*playsquare/(\\w+)(\\.html)?', 'tencent', 'playlist'],
+      ['y.qq.com.*playlist/(\\w+)(\\.html)?', 'tencent', 'playlist'],
       ['xiami.com.*song/(\\w+)', 'xiami', 'song'],
       ['xiami.com.*album/(\\w+)', 'xiami', 'album'],
       ['xiami.com.*artist/(\\w+)', 'xiami', 'artist'],
@@ -138,6 +142,8 @@ class MetingJSElement extends HTMLElement {
     this.appendChild(div)
 
     this.aplayer = new APlayer(options)
+    const customEvent = new CustomEvent('load', { detail: this })
+    this.dispatchEvent(customEvent)
   }
 
 }
