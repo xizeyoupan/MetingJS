@@ -104,6 +104,15 @@ Fixed mode with Lyric text
 
 Documentation for APlayer can be found at https://aplayer.js.org/#/home?id=options
 
+## Event
+
+|event               |lifecycle      |description|
+|:--------------------|:------------:|:----------|
+|parse-error          |during parse  |triggered if err happens|
+|load                 |after aplayer has loaded  |            |
+
+More events refer to [APlayer](https://aplayer.js.org/#/home?id=options).
+
 ## Advanced
 
 MetingJS allow you to use self-hosted API, [more information about Meting](https://github.com/metowolf/Meting).
